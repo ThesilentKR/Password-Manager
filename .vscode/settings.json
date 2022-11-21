@@ -35,6 +35,10 @@
   "files.associations": {
     "new": "cpp",
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "iosfwd": "cpp",
+    "string": "cpp",
+    "*.tcc": "cpp",
+    "fstream": "cpp"
   }
 }

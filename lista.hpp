@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 class Lista{
@@ -7,7 +6,7 @@ class Lista{
     class Vertex{
         public:
         
-        Vertex(string user, string pass, string site) { 
+        Vertex(string site, string user, string pass) { 
             passsword = pass; sitio=site; usuario=user;  sig=nullptr; back=nullptr;
         }
 
@@ -39,9 +38,9 @@ void Lista::imprimir(){
         Vertex *aux=head;
 
         while(aux!=nullptr){
+            cout<<"Sitio: "<<aux->sitio<<endl;
             cout<<"Usuario: "<<aux->usuario<<endl;
             cout<<"Constrasena: "<<aux->passsword<<endl;
-            cout<<"Sitio: "<<aux->sitio<<endl;
             cout<<"\n";
             aux=aux->sig;
         }
@@ -51,8 +50,8 @@ void Lista::imprimir(){
     }
 }
 
-void Lista::insertar(string usuario,string password, string sitio){
-    Vertex *nuevo_nodo = new Vertex(usuario,password,sitio);
+void Lista::insertar(string sitio,string usuario, string password){
+    Vertex *nuevo_nodo = new Vertex(sitio,usuario,password);
     if(head==nullptr){
         head = nuevo_nodo; //si esta vacia head toma el lugar de nuevo nodo
         tail = head; // tail y head apuntan al mismo
@@ -114,7 +113,7 @@ void Lista::modificar(string sitio){
     int opc;
     string auxstring;
     do{
-        cout<<"Que quieres modificar"<<endl;
+        cout<<"Que quieres modificar del sitio "<<pre->sitio<<":"<<endl;
         cout<<"1) Sitio"<<endl;
         cout<<"2) Usuario"<<endl;
         cout<<"3) Password"<<endl;
