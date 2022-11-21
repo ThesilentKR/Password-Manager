@@ -73,6 +73,10 @@ void Lista::eliminar(string sitio){
             anterior=pre; //capturamos el anterior del encontrado
            pre = pre->sig; //recorremos el pre
         }
+        if(pre == nullptr){
+        cout<<"Sitio no encontrado [DEL]"<<endl;
+         return;
+        }
         if (pre == head){ //comparamos si el que vamos es el inicio
             head = head->sig; // igualamos head a su campo siguiente que seria null
             delete pre; //eliminamos la variable que creamos
@@ -101,15 +105,24 @@ void Lista::buscar(string sitio){
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
     }
+    if(pre == nullptr){
+    cout<<"Sitio no encontrado [SEARCH]"<<endl;
+    return;
+    }
     cout<<"Usuario: "<<pre->usuario<<endl;
     cout<<"Constrasena: "<<pre->passsword<<endl;
-    cout<<"Sitio: "<<pre->sitio<<endl;
+    cout<<"Sitio: "<<pre->sitio<<endl;    
+
 }
 
 void Lista::modificar(string sitio){
      Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
+    }
+        if(pre == nullptr){
+    cout<<"Sitio no encontrado [MOD]"<<endl;
+    return;
     }
     int opc;
     string auxstring;
@@ -138,7 +151,5 @@ void Lista::modificar(string sitio){
         }
 
     }while (opc != 4);
-    
-
 }
 
