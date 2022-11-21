@@ -27,6 +27,7 @@ class Lista{
     void insertar(string,string,string);
     void eliminar(string);
     void buscar(string);
+    void modificar(string);
     void imprimir();
     void inicio_de_sesion();
 };
@@ -104,3 +105,40 @@ void Lista::buscar(string sitio){
     cout<<"Constrasena: "<<pre->passsword<<endl;
     cout<<"Sitio: "<<pre->sitio<<endl;
 }
+
+void Lista::modificar(string sitio){
+     Vertex *pre=head; //Iniciamos pre en head
+    while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
+        pre = pre->sig; //recorremos el pre
+    }
+    int opc;
+    string auxstring;
+    do{
+        cout<<"Que quieres modificar"<<endl;
+        cout<<"1) Sitio"<<endl;
+        cout<<"2) Usuario"<<endl;
+        cout<<"3) Password"<<endl;
+        cout<<"4) Salir"<<endl;
+        cin>>opc;
+        switch(opc){
+        case 1:
+            cout<<"Digita el nuevo Sitio: "; cin>>auxstring;
+            pre->sitio=auxstring;
+            break;
+        case 2:
+            cout<<"Digita el nuevo Usuario: "; cin>>auxstring;
+            pre->usuario=auxstring;
+            break;
+        case 3:
+            cout<<"Digita el nuevo Password: "; cin>>auxstring;
+            pre->passsword=auxstring;
+        break;
+        default:
+            break;
+        }
+
+    }while (opc != 4);
+    
+
+}
+
