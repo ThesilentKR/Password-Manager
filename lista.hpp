@@ -24,4 +24,5 @@ class Lista{
 
     void insertar(string,string,string);
     void buscar(string);
+    void inicio_de_sesion();
 };
