@@ -22,21 +22,25 @@ class Lista{
     Vertex *tail;
     public:
 
+    Lista(){head=nullptr;tail=nullptr;}
+
     void insertar(string,string,string);
+    void eliminar();
     void buscar(string);
     void imprimir();
     void inicio_de_sesion();
 };
+
 
 void Lista::imprimir(){
     if(head != nullptr){
 
         Vertex *aux=head;
 
-        while(aux->sig!=nullptr){
-            cout<<aux->usuario;
-            cout<<aux->passsword;
-            cout<<aux->sitio;
+        while(aux!=nullptr){
+            cout<<"Usuario: "<<aux->usuario<<endl;
+            cout<<"Constrasena: "<<aux->passsword<<endl;
+            cout<<"Sitio: "<<aux->sitio<<endl;
             aux=aux->sig;
         }
 
@@ -47,14 +51,15 @@ void Lista::imprimir(){
 
 void Lista::insertar(string usuario,string password, string sitio){
     Vertex *nuevo_nodo = new Vertex(usuario,password,sitio);
-
-    if(head == nullptr){
-        head->back = nuevo_nodo;
-        head=nuevo_nodo;
-        tail=head;
+    if(head==nullptr){
+        head = nuevo_nodo;
+        tail = head;
     }else{
         tail->sig = nuevo_nodo;
-        nuevo_nodo = nuevo_nodo->back=tail;
-        tail=nuevo_nodo;
     }
+}
+
+
+void Lista::eliminar(){
+
 }
