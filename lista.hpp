@@ -62,7 +62,7 @@ void Lista::insertar(string usuario,string password, string sitio){
     }
 }
 
-
+/*AGREGA LA CONDICION DE NOMBRE NO EXISTENTE*/
 void Lista::eliminar(string sitio){
 
     if(head != nullptr){
