@@ -31,7 +31,7 @@ class Lista{
 void Lista::imprimir(){
     if(head != nullptr){
 
-        Vertex *aux;
+        Vertex *aux=head;
 
         while(aux->sig!=nullptr){
             cout<<aux->usuario;
