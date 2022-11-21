@@ -24,8 +24,26 @@ class Lista{
 
     void insertar(string,string,string);
     void buscar(string);
+    void imprimir();
     void inicio_de_sesion();
 };
+
+void Lista::imprimir(){
+    if(head != nullptr){
+
+        Vertex *aux;
+
+        while(aux->sig!=nullptr){
+            cout<<aux->usuario;
+            cout<<aux->passsword;
+            cout<<aux->sitio;
+            aux=aux->sig;
+        }
+
+    }else{
+        cout<<"Lista vacia"<<endl;
+    }
+}
 
 void Lista::insertar(string usuario,string password, string sitio){
     Vertex *nuevo_nodo = new Vertex(usuario,password,sitio);
