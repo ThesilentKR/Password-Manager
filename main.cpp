@@ -10,7 +10,6 @@ int main(){
     fstream f;
     int opc;
     string Sitio,Usuario,Password,global;
-    string global,auxsite,auxuser,auxcontra;
     string Encryptado;
 
     cout<<"Dame la clave para desencriptar la informacion"<<endl;
