@@ -1,4 +1,5 @@
 #include <iostream>
+#include<fstream>
 using namespace std;
 
 class Lista{
@@ -27,8 +28,11 @@ class Lista{
     void eliminar(string);
     void buscar(string);
     void modificar(string);
+    string encryptado(string toEncrypt, string pass);
+
     void imprimir();
     void inicio_de_sesion();
+    void guardar();
 };
 
 
@@ -152,3 +156,37 @@ void Lista::modificar(string sitio){
     }while (opc != 4);
 }
 
+string Lista::encryptado(string toEncrypt, string key){
+    string output = toEncrypt;
+    
+    for (int i = 0; i < toEncrypt.size(); i++){
+        cout<<"Entrada:"<<output[i]<<endl;
+        output[i] = toEncrypt[i] ^ key[i];
+        cout<<"Salida:"<<output[i]<<endl;
+    }
+    
+    return output;
+}
+
+void Lista::guardar(){
+    if(head != nullptr){
+        bool aux=true;
+        Vertex *temp = head;
+        do{
+            if(aux==true){
+            fstream f;
+            f.open("confidencial.txt",ios::app);
+            f<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;
+            f.close();
+            temp = temp->sig;
+            aux=false;
+            }else{
+            fstream f;
+            f.open("confidencial.txt",ios::app);
+            f<<"\n"<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;;
+            f.close();
+            temp = temp->sig;
+            }
+        }while(temp != nullptr);
+    }
+}
