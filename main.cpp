@@ -24,16 +24,16 @@ int main(){
     while(!archivo.eof()){
         string Sitio,Usuario,Password;
         getline(archivo, Sitio,'-');
-        auxsite = Sitio;
+        //auxsite = Sitio;
         getline(archivo, Usuario,'-');
-        auxuser = '-' + Usuario;
+        //auxuser = '-' + Usuario;
         getline(archivo, Password);
-        auxcontra = '-' + Password;
-        cout<<global<<endl;system("pause");
-        global= l.encryptado(global,Encryptado);
-        cout<<global<<endl; system("pause");
-        global= l.encryptado(global,Encryptado);
-        cout<<global<<endl; system("pause");
+        //auxcontra = '-' + Password;
+        //cout<<global<<endl;system("pause");
+        //global= l.encryptado(global,Encryptado);
+        //cout<<global<<endl; system("pause");
+        //global= l.encryptado(global,Encryptado);
+        //cout<<global<<endl; system("pause");
         l.insertar(Sitio,Usuario,Password);
     }
     
