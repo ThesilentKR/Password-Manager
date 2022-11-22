@@ -9,7 +9,13 @@ int main(){
     ifstream archivo;
     fstream f;
     int opc;
-    string Sitio,Usuario,Password;
+    string Sitio,Usuario,Password,global;
+    string global,auxsite,auxuser,auxcontra;
+    string Encryptado;
+
+    cout<<"Dame la clave para desencriptar la informacion"<<endl;
+    cin.ignore(); getline(cin,Encryptado);
+
     archivo.open("confidencial.txt",ios::in);
     if(archivo.fail()){
         cout<<"\nNo se pudo abrir el archivo.";
@@ -18,10 +24,19 @@ int main(){
     while(!archivo.eof()){
         string Sitio,Usuario,Password;
         getline(archivo, Sitio,'-');
+        //auxsite = Sitio;
         getline(archivo, Usuario,'-');
+        //auxuser = '-' + Usuario;
         getline(archivo, Password);
+        //auxcontra = '-' + Password;
+        //cout<<global<<endl;system("pause");
+        //global= l.encryptado(global,Encryptado);
+        //cout<<global<<endl; system("pause");
+        //global= l.encryptado(global,Encryptado);
+        //cout<<global<<endl; system("pause");
         l.insertar(Sitio,Usuario,Password);
     }
+    
     archivo.close();
     do{
         cout<<"1) Agregar"<<endl;
@@ -66,7 +81,7 @@ int main(){
         default:
             break;
         }
-
+    l.guardar();
     }while (opc != 6);
     
 }
