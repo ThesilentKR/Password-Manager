@@ -1,6 +1,6 @@
 #include "Inicio_de_sesion.hpp"
 #define USER "Allen"
-#define PASS "+John123"
+#define PASS "Allen123"
 
 void Inicio::Inicio_de_sesion(){
     do{
