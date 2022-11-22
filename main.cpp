@@ -1,8 +1,11 @@
 #include "lista.hpp"
 #include<fstream>
+#include "Inicio_de_sesion.cpp"
+
 
 int main(){
-    Lista l;
+    Lista l; Inicio d;
+    d.Inicio_de_sesion();
     ifstream archivo;
     fstream f;
     int opc;
