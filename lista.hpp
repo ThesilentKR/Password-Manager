@@ -103,6 +103,7 @@ void Lista::buscar(string sitio){
     cout<<"Usuario: "<<pre->usuario<<endl;
     cout<<"Constrasena: "<<pre->passsword<<endl;
     cout<<"Sitio: "<<pre->sitio<<endl;
+    system("pause");
 }
 
 void Lista::modificar(string sitio){

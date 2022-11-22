@@ -21,6 +21,7 @@ int main(){
     }
     archivo.close();
     do{
+        system("cls");
         cout<<"1) Agregar"<<endl;
         cout<<"2) Buscar"<<endl;
         cout<<"3) Modificar"<<endl;
@@ -43,18 +44,18 @@ int main(){
             break;
         case 2:
             cout<<"Dame el nombre del sitio a buscar: ";
-           getline(cin,Sitio);
-
+           cin.ignore();getline(cin,Sitio);
+        
            l.buscar(Sitio);
             break;
         case 3:
-            cout<<"Dame el nombre del sitio a buscar: ";
-           getline(cin,Sitio);
+            cout<<"Dame el nombre del sitio a modificar: ";
+          cin.ignore();getline(cin,Sitio);
            l.buscar(Sitio);
         break;
         case 4:
             cout<<"Dame el nombre del sitio a eliminar: ";
-           getline(cin,Sitio);
+           cin.ignore();getline(cin,Sitio);
             l.eliminar(Sitio);
         break;
         case 5:
