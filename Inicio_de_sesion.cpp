@@ -38,6 +38,7 @@ if(user == USER && pass == PASS){
 
 if(verify == false){
     cout<<endl<<"\tDEMASIADOS INTENTOS FALLIDOS, ADIOS"<<endl;
+    exit(EXIT_SUCCESS);
 }else{
 cout<<endl<<"\tBienvenido :)"<<endl;
 _sleep(2000);
