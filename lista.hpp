@@ -161,7 +161,11 @@ string Lista::encryptado(string toEncrypt, string key){
     
     for (int i = 0; i < toEncrypt.size(); i++){
         cout<<"Entrada:"<<output[i]<<endl;
+        if(toEncrypt[i]=='-'){
+            output[i] = '-';
+        }else{
         output[i] = toEncrypt[i] ^ key[i];
+        }
         cout<<"Salida:"<<output[i]<<endl;
     }
     
