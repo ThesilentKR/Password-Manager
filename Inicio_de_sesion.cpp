@@ -1,9 +1,7 @@
 #include "Inicio_de_sesion.hpp"
 
 void Inicio::Inicio_de_sesion(){ ///INTERFAZ E INICIO DE SESION
-    if(!read_sesion.eof()){
-        escritura_de_user();
-    }else{
+    lectura_de_user();
     do{  
         system("cls");
 cout<<"\t\t\t\tLOGIN"<<endl;
@@ -46,13 +44,12 @@ system("cls");
 }
 
 }
-}
 
 void Inicio::escritura_de_user(){ ///REGISTRO DE NUEVO USUARIO
 write_sesion.open("User.txt",ios::app);
 if(!write_sesion){
     cout<<"Error al abrir el archivo [USER W]"<<endl;
-    exit(EXIT_SUCCESS);
+    exit(1);
 }
               system("cls");
         cout<<"\t\t\t\tSIGN UP"<<endl;
@@ -64,13 +61,33 @@ write_sesion<<usuario<<"-";write_sesion<<contra;
 write_sesion.close();
 }
 
-void Inicio::lectura_de_user(){ ///LECTURA INFORMACION DEL USUARIO
+void Inicio::validacion_de_user_existente(){ ///FUNCION PARA VER SI HAY ALGUN USUARIOR REGISTRADO
+string v;
 read_sesion.open("User.txt",ios::in);
-string u, p;
 if(!read_sesion){
-    cout<<"Error al abrir el archivo [USER R]";
-    exit(EXIT_SUCCESS);
+    cout<<"Error al abrir el archivo [USER V]";
+    exit(1);
 }
 
-read_sesion.close();
+}
+
+void Inicio::lectura_de_user(){ ///LECTURA INFORMACION DEL USUARIO
+string u; string p;
+read_sesion.open("User.txt",ios::in);
+if(!read_sesion){
+    cout<<"Error al abrir el archivo [USER R]";
+    exit(1);
+}
+    if(val == false){ 
+    getline(read_sesion, u, '-');
+    getline(read_sesion, p);
+    usuario = u;
+    contra = p;
+    cout<<usuario<<" - "<<contra;
+    system("pause");
+    read_sesion.close();        
+    }else{
+        escritura_de_user();
+        return;
+    }
 }

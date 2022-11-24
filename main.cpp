@@ -10,10 +10,11 @@ int main(){
     fstream f;
     int opc;
     string Sitio,Usuario,Password,global;
-    string Encryptado;
-
-    cout<<"Dame la clave para desencriptar la informacion"<<endl;
-    cin.ignore(); getline(cin,Encryptado);
+    string Encryptado = d.contra;    ///PARA QUE SEA IGUAL A LA CONTRASEÑA DEL USUARIO
+    cout<<endl<<Encryptado<<endl;
+    system("pause");
+   /* cout<<"Dame la clave para desencriptar la informacion"<<endl;
+    cin.ignore(); getline(cin,Encryptado);*/
 
     archivo.open("confidencial.txt",ios::in);
     if(archivo.fail()){
