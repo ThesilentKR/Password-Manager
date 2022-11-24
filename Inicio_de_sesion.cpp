@@ -69,10 +69,16 @@ if(!read_sesion){
     exit(1);
 }
 
+getline(read_sesion, v);
+if(v == ""){
+    val = true;
+}
+read_sesion.close();
 }
 
 void Inicio::lectura_de_user(){ ///LECTURA INFORMACION DEL USUARIO
 string u; string p;
+validacion_de_user_existente();
 read_sesion.open("User.txt",ios::in);
 if(!read_sesion){
     cout<<"Error al abrir el archivo [USER R]";
@@ -83,8 +89,6 @@ if(!read_sesion){
     getline(read_sesion, p);
     usuario = u;
     contra = p;
-    cout<<usuario<<" - "<<contra;
-    system("pause");
     read_sesion.close();        
     }else{
         escritura_de_user();
