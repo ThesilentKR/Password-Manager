@@ -25,18 +25,20 @@ class Lista{
     Lista(){head=nullptr;tail=nullptr;}
 
     void insertar(string,string,string);
-    void eliminar(string);
-    void buscar(string);
-    void modificar(string);
-    string encryptado(string toEncrypt, string pass);
+    void eliminar(string,string);
+    void buscar(string,string);
+    void modificar(string,string);
+    string encryptado(string, string);
 
-    void imprimir();
+    void imprimirTodo();
+    void imprimirSitios();
+    void imprimirUsuariosycontrasenas();
     void inicio_de_sesion();
     void guardar();
 };
 
 
-void Lista::imprimir(){
+void Lista::imprimirTodo(){
     if(head != nullptr){
 
         Vertex *aux=head;
@@ -53,6 +55,39 @@ void Lista::imprimir(){
         cout<<"Lista vacia"<<endl;
     }
 }
+void Lista::imprimirSitios(){
+    if(head != nullptr){
+
+        Vertex *aux=head;
+
+        while(aux!=nullptr){
+            cout<<"Sitio: "<<aux->sitio<<endl;
+            cout<<"\n";
+            aux=aux->sig;
+        }
+
+    }else{
+        cout<<"Lista vacia"<<endl;
+    }
+}
+void Lista::imprimirUsuariosycontrasenas(){
+    if(head != nullptr){
+
+        Vertex *aux=head;
+
+        while(aux!=nullptr){
+            cout<<"Usuario: "<<aux->usuario<<endl;
+            cout<<"Constrasena: "<<aux->passsword<<endl;
+            cout<<"\n";
+            aux=aux->sig;
+        }
+
+    }else{
+        cout<<"Lista vacia"<<endl;
+    }
+}
+
+
 
 void Lista::insertar(string sitio,string usuario, string password){
     Vertex *nuevo_nodo = new Vertex(sitio,usuario,password);
@@ -67,7 +102,7 @@ void Lista::insertar(string sitio,string usuario, string password){
 }
 
 /*AGREGA LA CONDICION DE NOMBRE NO EXISTENTE*/
-void Lista::eliminar(string sitio){
+void Lista::eliminar(string sitio,string Encryptado){
 
     if(head != nullptr){
         Vertex *pre=head; //Iniciamos pre en head
@@ -102,7 +137,7 @@ void Lista::eliminar(string sitio){
 
 }
 
-void Lista::buscar(string sitio){
+void Lista::buscar(string sitio,string Encryptado){
 
     Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
@@ -112,13 +147,18 @@ void Lista::buscar(string sitio){
     cout<<"Sitio no encontrado [SEARCH]"<<endl;
     return;
     }
+    pre->usuario = encryptado(pre->usuario, Encryptado);
+    pre->passsword = encryptado(pre->passsword, Encryptado);
     cout<<"Usuario: "<<pre->usuario<<endl;
     cout<<"Constrasena: "<<pre->passsword<<endl;
     cout<<"Sitio: "<<pre->sitio<<endl;    
+
+    pre->usuario = encryptado(pre->usuario, Encryptado);
+    pre->passsword = encryptado(pre->passsword, Encryptado);
     system("pause");
 }
 
-void Lista::modificar(string sitio){
+void Lista::modificar(string sitio, string Encryptado){
      Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
@@ -156,21 +196,6 @@ void Lista::modificar(string sitio){
     }while (opc != 4);
 }
 
-string Lista::encryptado(string toEncrypt, string key){
-    string output = toEncrypt;
-    
-    for (int i = 0; i < toEncrypt.size(); i++){
-        cout<<"Entrada:"<<output[i]<<endl;
-        if(toEncrypt[i]=='-'){
-            output[i] = '-';
-        }else{
-        output[i] = toEncrypt[i] ^ key[i];
-        }
-        cout<<"Salida:"<<output[i]<<endl;
-    }
-    
-    return output;
-}
 
 void Lista::guardar(){
     if(head != nullptr){
@@ -193,4 +218,14 @@ void Lista::guardar(){
             }
         }while(temp != nullptr);
     }
+}
+
+string Lista::encryptado(string toEncrypt,string pass) {
+    string key = pass; //Any char will work
+    string output = toEncrypt;
+    
+    for (int i = 0; i < toEncrypt.size(); i++)
+        output[i] = toEncrypt[i] ^ key[i];
+    
+    return output;
 }
