@@ -61,7 +61,7 @@ int main(){
           Usuario = l.encryptado(Usuario,Encryptado);
         cout<<"Quieres poner la contraseña tu o una generada"<<endl;
         cout<<"1-[Si] 2-[No]"<<endl;
-        cin>>opc2;
+        cin>>opc2; //agregar validacion
         if(opc2==1){
         cout<<"Dame la constraseña: ";
            cin.ignore(); getline(cin,Password);
