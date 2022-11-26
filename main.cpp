@@ -11,35 +11,8 @@ int main(){
     fstream f;
     int opc,opc2;
     string Sitio,Usuario,Password,global,v,PasswordRandom;
-    string Encryptado = d.contra;    ///PARA QUE SEA IGUAL A LA CONTRASEÑA DEL USUARIO
+    string Encryptado;
     bool val = false;
-
-    archivo.open("confidencial.txt",ios::in);
-    if(archivo.fail()){
-        cout<<"\nNo se pudo abrir el archivo.";
-        exit(1);
-    }
-
-    getline(archivo, v);
-    archivo.close();
-    if(v == ""){
-        val = true;
-    }
-    //Si esta vacio o no
-    if(val == false){
-        archivo.open("confidencial.txt",ios::in);
-        //Lee el archivo encriptado
-
-        while(!archivo.eof()){
-            string Sitio,Usuario,Password;
-            getline(archivo, Sitio,'-');
-            getline(archivo, Usuario,'-');
-            getline(archivo, Password);
-            getline(archivo,v);
-            l.insertar(Sitio,Usuario,Password);
-        }
-        archivo.close();
-    }
     
     do{
         cout<<"1) Agregar"<<endl;
@@ -58,17 +31,13 @@ int main(){
            cin.ignore(); getline(cin,Sitio);
         cout<<"Dame el usuario: ";
            getline(cin,Usuario);
-          Usuario = l.encryptado(Usuario,Encryptado);
         cout<<"Quieres poner la contraseña tu o una generada"<<endl;
         cout<<"1-[Si] 2-[No]"<<endl;
         cin>>opc2; //agregar validacion
         if(opc2==1){
         cout<<"Dame la constraseña: ";
            cin.ignore(); getline(cin,Password);
-           Password = l.encryptado(Password,Encryptado);
            l.insertar(Sitio,Usuario,Password);
-           f<<"\n"<<Sitio<<"-";f<<Usuario<<"-";f<<Password;
-           f.close();
         }else{
             srand(time(NULL));
             int coca;
@@ -77,10 +46,7 @@ int main(){
             for(int i=0;i<coca;i++){
                 PasswordRandom += 47 + rand() % 76;
             }
-            PasswordRandom = l.encryptado(PasswordRandom,Encryptado);
             l.insertar(Sitio,Usuario,PasswordRandom);
-            f<<"\n"<<Sitio<<"-";f<<Usuario<<"-";f<<PasswordRandom;
-            f.close();
         }
             break;
         case 2:
@@ -110,8 +76,6 @@ int main(){
         default:
             break;
         }
-    remove("confidencial.txt");
-    l.guardar();
     }while (opc != 8);
     
 }
