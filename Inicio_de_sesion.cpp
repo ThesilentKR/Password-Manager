@@ -46,7 +46,7 @@ system("cls");
 }
 
 void Inicio::escritura_de_user(){ ///REGISTRO DE NUEVO USUARIO
-write_sesion.open("User.txt",ios::app);
+write_sesion.open("confidencial.txt",ios::out | ios::binary);
 if(!write_sesion){
     cout<<"Error al abrir el archivo [USER W]"<<endl;
     exit(1);
@@ -57,19 +57,40 @@ if(!write_sesion){
         getline(cin, usuario);
         cout<<"Password: ";
         getline(cin,contra);
-write_sesion<<usuario<<"-";write_sesion<<contra;
+     size_user = (usuario.size());  
+     size_pass = (contra.size());
+     size_site = (fake_site.size());
+
+write_sesion.write(reinterpret_cast<char *>(&size_site), sizeof(int));
+write_sesion.write(fake_site.c_str(), size_site);
+
+write_sesion.write(reinterpret_cast<char *>(&size_user), sizeof(int));
+write_sesion.write(usuario.c_str(), size_user);
+
+write_sesion.write(reinterpret_cast<char *>(&size_pass), sizeof(int));
+write_sesion.write(contra.c_str(), size_pass);
+
+	usuario = contra = fake_site = "";
+	size_user = size_pass = size_site = 0;
+    
+write_sesion.flush();
 write_sesion.close();
 }
 
 void Inicio::validacion_de_user_existente(){ ///FUNCION PARA VER SI HAY ALGUN USUARIOR REGISTRADO
 string v;
-read_sesion.open("User.txt",ios::in);
+read_sesion.open("confidencial.txt",ios::in | ios::binary);
 if(!read_sesion){
     cout<<"Error al abrir el archivo [USER V]";
     exit(1);
 }
 
-getline(read_sesion, v);
+	read_sesion.read(reinterpret_cast<char *>(&size_user), sizeof(int));
+	buf = new char[size_user];
+	read_sesion.read( buf, size_user);
+	v = "";
+	v.append(buf, size_user);
+
 if(v == ""){
     val = true;
 }
@@ -77,19 +98,36 @@ read_sesion.close();
 }
 
 void Inicio::lectura_de_user(){ ///LECTURA INFORMACION DEL USUARIO
-string u; string p;
+string u; string p; string s;
 validacion_de_user_existente();
-read_sesion.open("User.txt",ios::in);
+read_sesion.open("confidencial.txt",ios::in | ios::binary);
 if(!read_sesion){
     cout<<"Error al abrir el archivo [USER R]";
     exit(1);
 }
+
     if(val == false){ 
-    getline(read_sesion, u, '-');
-    getline(read_sesion, p);
+	read_sesion.read(reinterpret_cast<char *>(&size_site), sizeof(int)); ///AQUI CAPTURA EL SITIO FALSO
+	buf = new char[size_site];
+	read_sesion.read( buf, size_site);
+	s = "";
+	s.append(buf, size_site);
+
+	read_sesion.read(reinterpret_cast<char *>(&size_user), sizeof(int));///AQUI CAPTURA EL USER
+	buf = new char[size_user];
+	read_sesion.read( buf, size_user);
+	u = "";
+	u.append(buf, size_user);
+
+	read_sesion.read(reinterpret_cast<char *>(&size_pass), sizeof(int));///AQUI CAPTURA LA CONTRASEÑA
+	buf = new char[size_pass];
+	read_sesion.read( buf, size_pass);
+	p = "";
+	p.append(buf, size_pass);
+    
+    read_sesion.close();        
     usuario = u;
     contra = p;
-    read_sesion.close();        
     }else{
         escritura_de_user();
         return;

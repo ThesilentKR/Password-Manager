@@ -14,9 +14,14 @@ class Inicio{
     string user;
     string contra;
     string usuario;
+    string fake_site = "Opera.com";
     bool verify = false;
     bool val = false;
     int cont = 0;
+    int size_user;  
+    int size_pass;
+    int size_site;
+    char *buf;
     ifstream read_sesion;
     ofstream write_sesion;
 };
