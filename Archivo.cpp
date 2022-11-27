@@ -1,7 +1,7 @@
 #include "Archivo.hpp"
 
 void Files::escribir_en_archivo(string s, string u, string c){ ///ESCRITURA de archivos
-write.open("confidencial.txt",ios::out | ios::binary);
+write.open("confidencial.txt",ios::app | ios::binary);
 if(!write){
 cout<<"ERROR Archivo confidencial [Archivo.cpp/ESCRITURA]"<<endl;
 exit(1);

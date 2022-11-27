@@ -29,7 +29,6 @@ class Lista{
     void buscar(string,string);
     void modificar(string);
     string encryptado(string, string);
-
     void imprimirTodo();
     void imprimirSitios();
     void imprimirUsuariosycontrasenas();
@@ -132,12 +131,17 @@ void Lista::eliminar(string sitio){
         }
     }else{
         cout<<"Lista vacia"<<endl;
+        system("cls");
     }
 
 }
 
 void Lista::buscar(string sitio,string Encryptado){
-
+    if(head == nullptr){
+        cout<<"LA LISTA ESTA VACIA";
+        system("pause");
+        return;
+    }
     Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
@@ -158,12 +162,18 @@ void Lista::buscar(string sitio,string Encryptado){
 }
 
 void Lista::modificar(string sitio){
+    if(head == nullptr){
+        cout<<"LA LISTA ESTA VACIA";
+        system("pause");
+        return;
+    }
      Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
     }
         if(pre == nullptr){
     cout<<"Sitio no encontrado [MOD]"<<endl;
+            system("pause");
     return;
     }
     int opc;
@@ -198,9 +208,9 @@ void Lista::modificar(string sitio){
 string Lista::encryptado(string toEncrypt,string pass) {
     string key = pass; //Any char will work
     string output = toEncrypt;
-    
+
     for (int i = 0; i < toEncrypt.size(); i++)
         output[i] = toEncrypt[i] ^ key[i];
-    
+
     return output;
 }

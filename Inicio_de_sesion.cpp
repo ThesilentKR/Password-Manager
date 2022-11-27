@@ -46,7 +46,7 @@ system("cls");
 }
 
 void Inicio::escritura_de_user(){ ///REGISTRO DE NUEVO USUARIO
-write_sesion.open("confidencial.txt",ios::out | ios::binary);
+write_sesion.open("confidencial.txt",ios::app | ios::binary);
 if(!write_sesion){
     cout<<"Error al abrir el archivo [USER W]"<<endl;
     exit(1);
@@ -54,11 +54,13 @@ if(!write_sesion){
               system("cls");
         cout<<"\t\t\t\tSIGN UP"<<endl;
         cout<<endl<<"User: ";
-        getline(cin, usuario);
+        getline(cin, usuario_);
         cout<<"Password: ";
-        getline(cin,contra);
-     size_user = (usuario.size());  
-     size_pass = (contra.size());
+        getline(cin,contra_);
+        usuario = usuario_;
+        contra = contra_;
+     size_user = (usuario_.size());  
+     size_pass = (contra_.size());
      size_site = (fake_site.size());
 
 write_sesion.write(reinterpret_cast<char *>(&size_site), sizeof(int));
@@ -70,7 +72,7 @@ write_sesion.write(usuario.c_str(), size_user);
 write_sesion.write(reinterpret_cast<char *>(&size_pass), sizeof(int));
 write_sesion.write(contra.c_str(), size_pass);
 
-	usuario = contra = fake_site = "";
+	usuario_ = contra_ = fake_site = "";
 	size_user = size_pass = size_site = 0;
     
 write_sesion.flush();

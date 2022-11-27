@@ -11,6 +11,7 @@ int main(){
     bool val = false;
     
     do{
+        system("cls");
         cout<<"1) Agregar"<<endl;
         cout<<"2) Buscar"<<endl;
         cout<<"3) Modificar"<<endl;

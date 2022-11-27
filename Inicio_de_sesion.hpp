@@ -12,8 +12,10 @@ class Inicio{
     void validacion_de_user_existente();
     string pass;
     string user;
-    string contra;
-    string usuario;
+    string contra; ///ESCRITURA DE ARCHIVO PRIMERO/CUANDO CREAS USUARIO 
+    string usuario; //ESCRITURA DE ARCHIVO PRIMERO/CUANDO CREAAS USUARIO
+    string contra_;
+    string usuario_;
     string fake_site = "Opera.com";
     bool verify = false;
     bool val = true; ///VERIFICAR USUARIOS EXISTENTES
