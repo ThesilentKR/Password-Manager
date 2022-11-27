@@ -1,5 +1,5 @@
 #include <iostream>
-#include<fstream>
+
 using namespace std;
 
 class Lista{
@@ -25,9 +25,9 @@ class Lista{
     Lista(){head=nullptr;tail=nullptr;}
 
     void insertar(string,string,string);
-    void eliminar(string,string);
+    void eliminar(string);
     void buscar(string,string);
-    void modificar(string,string);
+    void modificar(string);
     string encryptado(string, string);
 
     void imprimirTodo();
@@ -101,8 +101,7 @@ void Lista::insertar(string sitio,string usuario, string password){
     }
 }
 
-/*AGREGA LA CONDICION DE NOMBRE NO EXISTENTE*/
-void Lista::eliminar(string sitio,string Encryptado){
+void Lista::eliminar(string sitio){
 
     if(head != nullptr){
         Vertex *pre=head; //Iniciamos pre en head
@@ -158,7 +157,7 @@ void Lista::buscar(string sitio,string Encryptado){
     system("pause");
 }
 
-void Lista::modificar(string sitio, string Encryptado){
+void Lista::modificar(string sitio){
      Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
@@ -194,30 +193,6 @@ void Lista::modificar(string sitio, string Encryptado){
         }
 
     }while (opc != 4);
-}
-
-
-void Lista::guardar(){
-    if(head != nullptr){
-        bool aux=true;
-        Vertex *temp = head;
-        do{
-            if(aux==true){
-            fstream f;
-            f.open("confidencial.txt",ios::app);
-            f<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;
-            f.close();
-            temp = temp->sig;
-            aux=false;
-            }else{
-            fstream f;
-            f.open("confidencial.txt",ios::app);
-            f<<"\n"<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;;
-            f.close();
-            temp = temp->sig;
-            }
-        }while(temp != nullptr);
-    }
 }
 
 string Lista::encryptado(string toEncrypt,string pass) {

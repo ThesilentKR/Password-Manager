@@ -1,17 +1,13 @@
 #include "lista.hpp"
-#include<fstream>
 #include <time.h>
 #include "Inicio_de_sesion.cpp"
-
+#include "Archivo.cpp"
 
 int main(){
-    Lista l; Inicio d;
+    Lista l; Inicio d; Files f;
     d.Inicio_de_sesion();
-    ifstream archivo;
-    fstream f;
     int opc,opc2;
-    string Sitio,Usuario,Password,global,v,PasswordRandom;
-    string Encryptado;
+    string Sitio,Usuario,Password,global,v,PasswordRandom, Encryptado;
     bool val = false;
     
     do{
@@ -26,7 +22,6 @@ int main(){
         cin>>opc;
         switch(opc){
         case 1:
-        f.open("confidencial.txt",ios::app);
         cout<<"Dame el nombre del sitio: ";
            cin.ignore(); getline(cin,Sitio);
         cout<<"Dame el usuario: ";
@@ -38,6 +33,7 @@ int main(){
         cout<<"Dame la constraseña: ";
            cin.ignore(); getline(cin,Password);
            l.insertar(Sitio,Usuario,Password);
+           f.escribir_en_archivo(Sitio,Usuario,Password);
         }else{
             srand(time(NULL));
             int coca;
@@ -47,6 +43,7 @@ int main(){
                 PasswordRandom += 47 + rand() % 76;
             }
             l.insertar(Sitio,Usuario,PasswordRandom);
+           f.escribir_en_archivo(Sitio,Usuario,PasswordRandom);
         }
             break;
         case 2:
@@ -57,12 +54,12 @@ int main(){
         case 3:
             cout<<"Dame el nombre del sitio a modificar: ";
             cin.ignore(); getline(cin,Sitio);
-           l.buscar(Sitio,Encryptado);
+           l.modificar(Sitio);
         break;
         case 4:
             cout<<"Dame el nombre del sitio a eliminar: ";
             cin.ignore();getline(cin,Sitio);
-            l.eliminar(Sitio,Encryptado);
+            l.eliminar(Sitio);
         break;
         case 5:
             l.imprimirTodo();
@@ -77,5 +74,4 @@ int main(){
             break;
         }
     }while (opc != 8);
-    
 }

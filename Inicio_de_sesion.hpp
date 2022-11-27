@@ -16,7 +16,7 @@ class Inicio{
     string usuario;
     string fake_site = "Opera.com";
     bool verify = false;
-    bool val = false;
+    bool val = true; ///VERIFICAR USUARIOS EXISTENTES
     int cont = 0;
     int size_user;  
     int size_pass;

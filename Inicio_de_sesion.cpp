@@ -84,15 +84,14 @@ if(!read_sesion){
     cout<<"Error al abrir el archivo [USER V]";
     exit(1);
 }
-
+    size_user = 0;
 	read_sesion.read(reinterpret_cast<char *>(&size_user), sizeof(int));
 	buf = new char[size_user];
 	read_sesion.read( buf, size_user);
 	v = "";
 	v.append(buf, size_user);
-
 if(v == ""){
-    val = true;
+    val = false;
 }
 read_sesion.close();
 }
@@ -106,7 +105,7 @@ if(!read_sesion){
     exit(1);
 }
 
-    if(val == false){ 
+    if(val == true){ 
 	read_sesion.read(reinterpret_cast<char *>(&size_site), sizeof(int)); ///AQUI CAPTURA EL SITIO FALSO
 	buf = new char[size_site];
 	read_sesion.read( buf, size_site);
