@@ -14,4 +14,5 @@ class Files{
     int size_u;
     int size_c;
     char *buffer;
+    bool val = true;
 };

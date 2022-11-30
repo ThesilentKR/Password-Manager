@@ -49,11 +49,13 @@ void Lista::imprimirTodo(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+        system("pause");
     }
 }
+
 void Lista::imprimirSitios(){
     if(head != nullptr){
 
@@ -64,9 +66,10 @@ void Lista::imprimirSitios(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
     }
 }
 void Lista::imprimirUsuariosycontrasenas(){
@@ -80,9 +83,10 @@ void Lista::imprimirUsuariosycontrasenas(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
     }
 }
 
@@ -98,6 +102,8 @@ void Lista::insertar(string sitio,string usuario, string password){
         nuevo_nodo->back=tail; // hacemos que el nuevo nodo apunte a tail
         tail = nuevo_nodo; // tail pasa a hacer el nuevo nodo 
     }
+	cout<<"sitio:  "<<tail->sitio<<" Usario: "<<tail->usuario<<" password: "<<tail->passsword<<endl;
+                    system("pause");
 }
 
 void Lista::eliminar(string sitio){
@@ -111,6 +117,7 @@ void Lista::eliminar(string sitio){
         }
         if(pre == nullptr){
         cout<<"Sitio no encontrado [DEL]"<<endl;
+            system("pause");
          return;
         }
         if (pre == head){ //comparamos si el que vamos es el inicio
@@ -131,6 +138,7 @@ void Lista::eliminar(string sitio){
         }
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
         system("cls");
     }
 
@@ -138,8 +146,7 @@ void Lista::eliminar(string sitio){
 
 void Lista::buscar(string sitio,string Encryptado){
     if(head == nullptr){
-        cout<<"LA LISTA ESTA VACIA";
-        system("pause");
+        cout<<"LA LISTA ESTA VACIA"<<endl;
         return;
     }
     Vertex *pre=head; //Iniciamos pre en head
@@ -163,7 +170,7 @@ void Lista::buscar(string sitio,string Encryptado){
 
 void Lista::modificar(string sitio){
     if(head == nullptr){
-        cout<<"LA LISTA ESTA VACIA";
+        cout<<"LA LISTA ESTA VACIA"<<endl;
         system("pause");
         return;
     }
@@ -205,12 +212,15 @@ void Lista::modificar(string sitio){
     }while (opc != 4);
 }
 
-string Lista::encryptado(string toEncrypt,string pass) {
+/*string Lista::encryptado(string toEncrypt,string pass) {
     string key = pass; //Any char will work
     string output = toEncrypt;
+    int mod = key.size();
+    int d;
+    for (int i = 0; i < toEncrypt.size(); i++){
+        d = mod % i;
+        output[i] = toEncrypt[i] ^ key[d];
 
-    for (int i = 0; i < toEncrypt.size(); i++)
-        output[i] = toEncrypt[i] ^ key[i];
-
-    return output;
-}
+    }
+    return output;    
+}*/
