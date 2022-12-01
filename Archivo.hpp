@@ -10,6 +10,7 @@ class Files{
     fstream temp;
     void escribir_en_archivo(string, string, string);
     void lectura_de_archivo();
+    void guardar_archivo();
     int size_s;
     int size_u;
     int size_c;
