@@ -16,7 +16,7 @@ class Inicio{
     string usuario; //ESCRITURA DE ARCHIVO PRIMERO/CUANDO CREAAS USUARIO
     string contra_;
     string usuario_;
-    string fake_site = "Opera.com";
+    string fake_site = "Opera";
     bool verify = false;
     bool val = true; ///VERIFICAR USUARIOS EXISTENTES
     int cont = 0;

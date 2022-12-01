@@ -212,7 +212,7 @@ void Lista::modificar(string sitio){
     }while (opc != 4);
 }
 
-/*string Lista::encryptado(string toEncrypt,string pass) {
+string Lista::encryptado(string toEncrypt,string pass) {
     string key = pass; //Any char will work
     string output = toEncrypt;
     int mod = key.size();
@@ -223,4 +223,4 @@ void Lista::modificar(string sitio){
 
     }
     return output;    
-}*/
+}
