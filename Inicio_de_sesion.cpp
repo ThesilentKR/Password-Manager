@@ -40,7 +40,7 @@ if(verify == false){///PARA SACAR AL USUARIO DESPUES DE 3 INTENTOS
     exit(EXIT_SUCCESS);
 }else{
 cout<<endl<<"\tBienvenido :)"<<endl;
-_sleep(2000);
+_sleep(1000);
 system("cls");
 }
 
@@ -60,18 +60,20 @@ if(!write_sesion){
         getline(cin,contra_);
         usuario = usuario_;
         contra = contra_;
-     size_user = (usuario_.size());  
-     size_pass = (contra_.size());
+        usuario_ = Encr_log(usuario, "X/8");
+        contra_ = Encr_log(contra, "X/8");
+     size_user = (usuario.size());  
+     size_pass = (contra.size());
      size_site = (fake_site.size());
 
 write_sesion.write(reinterpret_cast<char *>(&size_site), sizeof(int));
 write_sesion.write(fake_site.c_str(), size_site);
 
 write_sesion.write(reinterpret_cast<char *>(&size_user), sizeof(int));
-write_sesion.write(usuario.c_str(), size_user);
+write_sesion.write(usuario_.c_str(), size_user);
 
 write_sesion.write(reinterpret_cast<char *>(&size_pass), sizeof(int));
-write_sesion.write(contra.c_str(), size_pass);
+write_sesion.write(contra_.c_str(), size_pass);
 
 	usuario_ = contra_ = fake_site = "";
 	size_user = size_pass = size_site = 0;
@@ -128,10 +130,21 @@ if(!read_sesion){
 	p.append(buf, size_pass);
     
     read_sesion.close();        
-    usuario = u;
-    contra = p;
+    usuario = Encr_log(u, "X/8");
+    contra = Encr_log(p, "X/8");
     }else{
         escritura_de_user();
         return;
     }
+}
+
+string Inicio::Encr_log(string e, string k){
+    string key = k;
+    string output = e;
+    
+    for (int i = 0; i < e.size(); i++)
+        output[i] = e[i] ^ key[i];
+    
+    return output;
+
 }

@@ -10,6 +10,7 @@ class Inicio{
     void lectura_de_user();
     void escritura_de_user();
     void validacion_de_user_existente();
+    string Encr_log(string, string);
     string pass;
     string user;
     string contra; ///ESCRITURA DE ARCHIVO PRIMERO/CUANDO CREAS USUARIO 
