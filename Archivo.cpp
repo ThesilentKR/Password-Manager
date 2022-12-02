@@ -30,7 +30,42 @@ write.flush();
 write.close();
 }
 
+void Files::guardar_archivo(){
+	read.open("confidencial.txt", ios::in | ios::binary);
+	temp.open("Temp.txt", ios::app | ios::binary);
+if(!temp){
+cout<<"ERROR Archivo confidencial [Archivo.cpp/TEMPORAL]"<<endl;
+exit(1);
+}
+	Vertex *aux = a.head;
+	string s, u, c;
 
+while(aux != nullptr){
+	s = aux->sitio;
+	u = aux->usuario;
+	c = aux->passsword;
+    size_s = (s.size());
+    size_u = (u.size());
+    size_c = (c.size());	
+	temp.write(reinterpret_cast<char *>(&size_s), sizeof(int)); ///ESRIBE EL SITIO
+	temp.write(s.c_str(), size_s);
+
+	temp.write(reinterpret_cast<char *>(&size_u), sizeof(int)); ///ESCRIBE EL USUARIO
+	temp.write(u.c_str(), size_u);
+
+	temp.write(reinterpret_cast<char *>(&size_c), sizeof(int)); ///ESCRIBE LA CONTRASEÑA
+	temp.write(c.c_str(), size_c);
+
+	s = u = c = "";
+	size_s = size_u = size_c = 0;
+	aux = aux->sig;
+	temp.flush();
+}
+read.close();
+temp.close();
+remove("confidencial.txt");
+rename("Temp.txt","confidencial.txt");
+}
 
 void Files::lectura_de_archivo(){
 read.open("confidencial.txt", ios::in | ios::binary);
@@ -58,6 +93,10 @@ exit(1);
 	c.append(buffer, size_c);
 
 while(!read.eof()){	
+<<<<<<< HEAD
+=======
+
+>>>>>>> e00e789bd9298c0db4383bbc6e2b836bbd18a8ab
 a.insertar(s,u,c);
 	read.read(reinterpret_cast<char *>(&size_s), sizeof(int)); ///AQUI CAPTURA EL SITIO 
 	buffer = new char[size_s];

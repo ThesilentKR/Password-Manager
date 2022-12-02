@@ -2,8 +2,6 @@
 
 using namespace std;
 
-class Lista{
-    private:
     class Vertex{
         public:
         
@@ -18,12 +16,12 @@ class Lista{
         Vertex *sig;
         Vertex *back;
     };
+
+class Lista{
+    public:    
+    Lista(){head=nullptr;tail=nullptr;}
     Vertex *head;
     Vertex *tail;
-    public:
-
-    Lista(){head=nullptr;tail=nullptr;}
-
     void insertar(string,string,string);
     void eliminar(string);
     void buscar(string,string);
@@ -102,6 +100,10 @@ void Lista::insertar(string sitio,string usuario, string password){
         nuevo_nodo->back=tail; // hacemos que el nuevo nodo apunte a tail
         tail = nuevo_nodo; // tail pasa a hacer el nuevo nodo 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e00e789bd9298c0db4383bbc6e2b836bbd18a8ab
 }
 
 void Lista::eliminar(string sitio){

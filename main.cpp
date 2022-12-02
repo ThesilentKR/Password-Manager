@@ -55,6 +55,7 @@ int main(){
             cout<<"Dame el nombre del sitio a modificar: ";
             cin.ignore(); getline(cin,Sitio);
            a.modificar(Sitio);
+            f.guardar_archivo();
         break;
         case 4:
             cout<<"Dame el nombre del sitio a eliminar: ";
