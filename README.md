@@ -1,6 +1,9 @@
 # Password-Manager
 Proyector final Estructura de datos 
 
+# INSTALACION
+Descargue los archivos del programa e instalelos en su compilador favorito (de preferencia VS CODE).
+
 # FUNCION PRINCIPAL
 La funcion principal del programa, es encryptar informacion personal, en este caso se asegura el usuario y la contraseña del sitio dado, en el cual se debe acceder por el medio un login creado por el propietario del equipo computacional, toda esta informacion va a guardarse en un archivo de texto de manera encryptada.
 
