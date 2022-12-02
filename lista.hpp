@@ -1,9 +1,7 @@
 #include <iostream>
-#include<fstream>
+
 using namespace std;
 
-class Lista{
-    private:
     class Vertex{
         public:
         
@@ -18,18 +16,17 @@ class Lista{
         Vertex *sig;
         Vertex *back;
     };
+
+class Lista{
+    public:    
+    Lista(){head=nullptr;tail=nullptr;}
     Vertex *head;
     Vertex *tail;
-    public:
-
-    Lista(){head=nullptr;tail=nullptr;}
-
     void insertar(string,string,string);
-    void eliminar(string,string);
+    void eliminar(string);
     void buscar(string,string);
     void modificar(string,string);
     string encryptado(string, string);
-
     void imprimirTodo();
     void imprimirSitios();
     void imprimirUsuariosycontrasenas();
@@ -50,11 +47,13 @@ void Lista::imprimirTodo(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+        system("pause");
     }
 }
+
 void Lista::imprimirSitios(){
     if(head != nullptr){
 
@@ -65,9 +64,10 @@ void Lista::imprimirSitios(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
     }
 }
 void Lista::imprimirUsuariosycontrasenas(){
@@ -81,9 +81,10 @@ void Lista::imprimirUsuariosycontrasenas(){
             cout<<"\n";
             aux=aux->sig;
         }
-
+                    system("pause");
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
     }
 }
 
@@ -101,8 +102,7 @@ void Lista::insertar(string sitio,string usuario, string password){
     }
 }
 
-/*AGREGA LA CONDICION DE NOMBRE NO EXISTENTE*/
-void Lista::eliminar(string sitio,string Encryptado){
+void Lista::eliminar(string sitio){
 
     if(head != nullptr){
         Vertex *pre=head; //Iniciamos pre en head
@@ -113,6 +113,7 @@ void Lista::eliminar(string sitio,string Encryptado){
         }
         if(pre == nullptr){
         cout<<"Sitio no encontrado [DEL]"<<endl;
+            system("pause");
          return;
         }
         if (pre == head){ //comparamos si el que vamos es el inicio
@@ -133,12 +134,17 @@ void Lista::eliminar(string sitio,string Encryptado){
         }
     }else{
         cout<<"Lista vacia"<<endl;
+            system("pause");
+        system("cls");
     }
 
 }
 
 void Lista::buscar(string sitio,string Encryptado){
-
+    if(head == nullptr){
+        cout<<"LA LISTA ESTA VACIA"<<endl;
+        return;
+    }
     Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
@@ -151,20 +157,24 @@ void Lista::buscar(string sitio,string Encryptado){
     pre->passsword = encryptado(pre->passsword, Encryptado);
     cout<<"Usuario: "<<pre->usuario<<endl;
     cout<<"Constrasena: "<<pre->passsword<<endl;
-    cout<<"Sitio: "<<pre->sitio<<endl;    
-
+    cout<<"Sitio: "<<pre->sitio<<endl;
     pre->usuario = encryptado(pre->usuario, Encryptado);
-    pre->passsword = encryptado(pre->passsword, Encryptado);
-    system("pause");
+    pre->passsword = encryptado(pre->passsword, Encryptado);   
 }
 
-void Lista::modificar(string sitio, string Encryptado){
+void Lista::modificar(string sitio,string Encryptado){
+    if(head == nullptr){
+        cout<<"LA LISTA ESTA VACIA"<<endl;
+        system("pause");
+        return;
+    }
      Vertex *pre=head; //Iniciamos pre en head
     while(pre != nullptr && pre->sitio != sitio){ //hacemos un recorrido hasta terminar o encontrar el sitio
         pre = pre->sig; //recorremos el pre
     }
         if(pre == nullptr){
     cout<<"Sitio no encontrado [MOD]"<<endl;
+            system("pause");
     return;
     }
     int opc;
@@ -184,10 +194,12 @@ void Lista::modificar(string sitio, string Encryptado){
         case 2:
             cout<<"Digita el nuevo Usuario: "; cin>>auxstring;
             pre->usuario=auxstring;
+            pre->usuario = encryptado(pre->usuario, Encryptado);
             break;
         case 3:
             cout<<"Digita el nuevo Password: "; cin>>auxstring;
             pre->passsword=auxstring;
+            pre->passsword = encryptado(pre->passsword, Encryptado);
         break;
         default:
             break;
@@ -196,36 +208,14 @@ void Lista::modificar(string sitio, string Encryptado){
     }while (opc != 4);
 }
 
-
-void Lista::guardar(){
-    if(head != nullptr){
-        bool aux=true;
-        Vertex *temp = head;
-        do{
-            if(aux==true){
-            fstream f;
-            f.open("confidencial.txt",ios::app);
-            f<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;
-            f.close();
-            temp = temp->sig;
-            aux=false;
-            }else{
-            fstream f;
-            f.open("confidencial.txt",ios::app);
-            f<<"\n"<<temp->sitio<<"-";f<<temp->usuario<<"-";f<<temp->passsword;;
-            f.close();
-            temp = temp->sig;
-            }
-        }while(temp != nullptr);
-    }
-}
-
 string Lista::encryptado(string toEncrypt,string pass) {
-    string key = pass; //Any char will work
+    string key = pass;
     string output = toEncrypt;
-    
-    for (int i = 0; i < toEncrypt.size(); i++)
-        output[i] = toEncrypt[i] ^ key[i];
-    
+    int s = pass.size();int mod = 0;
+    for (int i = 0; i < toEncrypt.size(); i++){
+     mod = i % s;
+        output[i] = toEncrypt[i] ^ key[mod];
+    }
     return output;
+
 }

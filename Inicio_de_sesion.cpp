@@ -24,6 +24,7 @@ while(car != 13){
 }
     car = getch();
 }
+//contra=encryptado(contra,pass);
 if(user == usuario && pass == contra){ ///VALIDACION
     verify = true;
 }else{
@@ -39,14 +40,14 @@ if(verify == false){///PARA SACAR AL USUARIO DESPUES DE 3 INTENTOS
     exit(EXIT_SUCCESS);
 }else{
 cout<<endl<<"\tBienvenido :)"<<endl;
-_sleep(2000);
+_sleep(1000);
 system("cls");
 }
 
 }
 
 void Inicio::escritura_de_user(){ ///REGISTRO DE NUEVO USUARIO
-write_sesion.open("confidencial.txt",ios::out | ios::binary);
+write_sesion.open("confidencial.txt",ios::app | ios::binary);
 if(!write_sesion){
     cout<<"Error al abrir el archivo [USER W]"<<endl;
     exit(1);
@@ -54,9 +55,13 @@ if(!write_sesion){
               system("cls");
         cout<<"\t\t\t\tSIGN UP"<<endl;
         cout<<endl<<"User: ";
-        getline(cin, usuario);
+        getline(cin, usuario_);
         cout<<"Password: ";
-        getline(cin,contra);
+        getline(cin,contra_);
+        usuario = usuario_;
+        contra = contra_;
+        usuario_ = Encr_log(usuario, "X/8");
+        contra_ = Encr_log(contra, "X/8");
      size_user = (usuario.size());  
      size_pass = (contra.size());
      size_site = (fake_site.size());
@@ -65,12 +70,12 @@ write_sesion.write(reinterpret_cast<char *>(&size_site), sizeof(int));
 write_sesion.write(fake_site.c_str(), size_site);
 
 write_sesion.write(reinterpret_cast<char *>(&size_user), sizeof(int));
-write_sesion.write(usuario.c_str(), size_user);
+write_sesion.write(usuario_.c_str(), size_user);
 
 write_sesion.write(reinterpret_cast<char *>(&size_pass), sizeof(int));
-write_sesion.write(contra.c_str(), size_pass);
+write_sesion.write(contra_.c_str(), size_pass);
 
-	usuario = contra = fake_site = "";
+	usuario_ = contra_ = fake_site = "";
 	size_user = size_pass = size_site = 0;
     
 write_sesion.flush();
@@ -84,15 +89,14 @@ if(!read_sesion){
     cout<<"Error al abrir el archivo [USER V]";
     exit(1);
 }
-
+    size_user = 0;
 	read_sesion.read(reinterpret_cast<char *>(&size_user), sizeof(int));
 	buf = new char[size_user];
 	read_sesion.read( buf, size_user);
 	v = "";
 	v.append(buf, size_user);
-
 if(v == ""){
-    val = true;
+    val = false;
 }
 read_sesion.close();
 }
@@ -106,7 +110,7 @@ if(!read_sesion){
     exit(1);
 }
 
-    if(val == false){ 
+    if(val == true){ 
 	read_sesion.read(reinterpret_cast<char *>(&size_site), sizeof(int)); ///AQUI CAPTURA EL SITIO FALSO
 	buf = new char[size_site];
 	read_sesion.read( buf, size_site);
@@ -126,10 +130,25 @@ if(!read_sesion){
 	p.append(buf, size_pass);
     
     read_sesion.close();        
-    usuario = u;
-    contra = p;
+    usuario = Encr_log(u, "X/8");
+    contra = Encr_log(p, "X/8");
+    cout<<usuario<<" "<<contra<<endl;
+    system("pause");
     }else{
         escritura_de_user();
         return;
     }
 }
+
+string Inicio::Encr_log(string e, string k){
+    string key = k;
+    string output = e;
+    int s = k.size();int mod = 0;
+    for (int i = 0; i < e.size(); i++){
+     mod = i % s;
+        output[i] = e[i] ^ key[mod];
+    }
+    return output;
+
+}
+//hola
