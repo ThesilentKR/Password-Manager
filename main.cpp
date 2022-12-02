@@ -78,7 +78,7 @@ int main(){
         default:
             break;
         }
-        //Aqui El guardar
+        //pepe
         f.guardar_archivo();
     }while (opc != 8);
 }
