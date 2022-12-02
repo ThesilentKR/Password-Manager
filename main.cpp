@@ -77,7 +77,6 @@ int main(){
         default:
             break;
         }
-
         f.guardar_archivo();
     }while (opc != 8);
 }
