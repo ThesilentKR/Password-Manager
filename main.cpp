@@ -73,5 +73,6 @@ int main(){
         default:
             break;
         }
+        //Aqui El guardar
     }while (opc != 8);
 }

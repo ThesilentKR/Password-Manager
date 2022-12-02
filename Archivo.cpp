@@ -39,7 +39,6 @@ cout<<"ERROR Archivo confidencial [Archivo.cpp/LECTURA]"<<endl;
 exit(1);
 }
     string s, u, c;
-	
 	read.read(reinterpret_cast<char *>(&size_s), sizeof(int)); ///AQUI CAPTURA EL SITIO 
 	buffer = new char[size_s];
 	read.read( buffer, size_s);
@@ -57,12 +56,8 @@ exit(1);
 	read.read( buffer, size_c);
 	c = "";
 	c.append(buffer, size_c);
-	cout<<"site:  "<<s<<" User: "<<u<<" pass: "<<c<<endl;
-                    system("pause");
 
 while(!read.eof()){	
-	cout<<"site:  "<<s<<" User: "<<u<<" pass: "<<c<<endl;
-                    system("pause");
 a.insertar(s,u,c);
 	read.read(reinterpret_cast<char *>(&size_s), sizeof(int)); ///AQUI CAPTURA EL SITIO 
 	buffer = new char[size_s];

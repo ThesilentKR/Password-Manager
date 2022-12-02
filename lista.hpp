@@ -102,8 +102,6 @@ void Lista::insertar(string sitio,string usuario, string password){
         nuevo_nodo->back=tail; // hacemos que el nuevo nodo apunte a tail
         tail = nuevo_nodo; // tail pasa a hacer el nuevo nodo 
     }
-	cout<<"sitio:  "<<tail->sitio<<" Usario: "<<tail->usuario<<" password: "<<tail->passsword<<endl;
-                    system("pause");
 }
 
 void Lista::eliminar(string sitio){
