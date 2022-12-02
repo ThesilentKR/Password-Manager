@@ -149,3 +149,4 @@ string Inicio::Encr_log(string e, string k){
     return output;
 
 }
+//hola
