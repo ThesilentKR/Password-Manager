@@ -132,6 +132,8 @@ if(!read_sesion){
     read_sesion.close();        
     usuario = Encr_log(u, "X/8");
     contra = Encr_log(p, "X/8");
+    cout<<usuario<<" "<<contra<<endl;
+    system("pause");
     }else{
         escritura_de_user();
         return;
@@ -141,10 +143,11 @@ if(!read_sesion){
 string Inicio::Encr_log(string e, string k){
     string key = k;
     string output = e;
-    
-    for (int i = 0; i < e.size(); i++)
-        output[i] = e[i] ^ key[i];
-    
+    int s = k.size();int mod = 0;
+    for (int i = 0; i < e.size(); i++){
+     mod = i % s;
+        output[i] = e[i] ^ key[mod];
+    }
     return output;
 
 }
