@@ -141,10 +141,11 @@ if(!read_sesion){
 string Inicio::Encr_log(string e, string k){
     string key = k;
     string output = e;
-    
-    for (int i = 0; i < e.size(); i++)
-        output[i] = e[i] ^ key[i];
-    
+    int s = k.size();int mod = 0;
+    for (int i = 0; i < e.size(); i++){
+     mod = i % s;
+        output[i] = e[i] ^ key[mod];
+    }
     return output;
 
 }
