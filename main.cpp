@@ -42,8 +42,8 @@ int main(){
             cout<<"Dame la longitud de la cadena"<<endl;
             cin>>coca;
             for(int i=0;i<coca;i++){
-                PasswordRandom += 47 + rand() % 76;
-            }
+                PasswordRandom += 65 + rand() % 25;
+            }           
             PasswordRandom = a.encryptado(PasswordRandom, Encryptd);
             a.insertar(Sitio,Usuario,PasswordRandom);
            f.escribir_en_archivo(Sitio,Usuario,PasswordRandom);
@@ -59,7 +59,6 @@ int main(){
             cout<<"Dame el nombre del sitio a modificar: ";
             cin.ignore(); getline(cin,Sitio);
            a.modificar(Sitio);
-            f.guardar_archivo();
         break;
         case 4:
             cout<<"Dame el nombre del sitio a eliminar: ";
@@ -78,7 +77,7 @@ int main(){
         default:
             break;
         }
-        //Aqui El guardar
+
         f.guardar_archivo();
     }while (opc != 8);
 }
