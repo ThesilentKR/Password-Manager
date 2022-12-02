@@ -7,6 +7,7 @@ int main(){
     d.Inicio_de_sesion();
     f.lectura_de_archivo();
     int opc,opc2;
+    string Encryptd = d.contra; 
     string Sitio,Usuario,Password,PasswordRandom,Encryptado;
     do{
         system("cls");
@@ -25,12 +26,14 @@ int main(){
            cin.ignore(); getline(cin,Sitio);
         cout<<"Dame el usuario: ";
            getline(cin,Usuario);
+           Usuario = a.encryptado(Usuario, Encryptd);
         cout<<"Quieres poner la contraseña tu o una generada"<<endl;
         cout<<"1-[Si] 2-[No]"<<endl;
         cin>>opc2; //agregar validacion
         if(opc2==1){
         cout<<"Dame la constraseña: ";
            cin.ignore(); getline(cin,Password);
+           Password = a.encryptado(Password, Encryptd);
            a.insertar(Sitio,Usuario,Password);
            f.escribir_en_archivo(Sitio,Usuario,Password);
         }else{
@@ -41,6 +44,7 @@ int main(){
             for(int i=0;i<coca;i++){
                 PasswordRandom += 47 + rand() % 76;
             }
+            PasswordRandom = a.encryptado(PasswordRandom, Encryptd);
             a.insertar(Sitio,Usuario,PasswordRandom);
            f.escribir_en_archivo(Sitio,Usuario,PasswordRandom);
         }
@@ -48,8 +52,8 @@ int main(){
         case 2:
             cout<<"Dame el nombre del sitio a buscar: ";
             cin.ignore(); getline(cin,Sitio);
-            a.buscar(Sitio,Encryptado);
-                    system("pause");
+            a.buscar(Sitio,Encryptd);
+            system("pause");
             break;
         case 3:
             cout<<"Dame el nombre del sitio a modificar: ";
@@ -75,5 +79,6 @@ int main(){
             break;
         }
         //Aqui El guardar
+        f.guardar_archivo();
     }while (opc != 8);
 }

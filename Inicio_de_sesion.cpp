@@ -24,6 +24,7 @@ while(car != 13){
 }
     car = getch();
 }
+//contra=encryptado(contra,pass);
 if(user == usuario && pass == contra){ ///VALIDACION
     verify = true;
 }else{

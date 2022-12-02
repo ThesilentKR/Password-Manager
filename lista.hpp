@@ -100,10 +100,6 @@ void Lista::insertar(string sitio,string usuario, string password){
         nuevo_nodo->back=tail; // hacemos que el nuevo nodo apunte a tail
         tail = nuevo_nodo; // tail pasa a hacer el nuevo nodo 
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> e00e789bd9298c0db4383bbc6e2b836bbd18a8ab
 }
 
 void Lista::eliminar(string sitio){
@@ -161,11 +157,9 @@ void Lista::buscar(string sitio,string Encryptado){
     pre->passsword = encryptado(pre->passsword, Encryptado);
     cout<<"Usuario: "<<pre->usuario<<endl;
     cout<<"Constrasena: "<<pre->passsword<<endl;
-    cout<<"Sitio: "<<pre->sitio<<endl;    
-
+    cout<<"Sitio: "<<pre->sitio<<endl;
     pre->usuario = encryptado(pre->usuario, Encryptado);
-    pre->passsword = encryptado(pre->passsword, Encryptado);
-    system("pause");
+    pre->passsword = encryptado(pre->passsword, Encryptado);   
 }
 
 void Lista::modificar(string sitio){
@@ -215,12 +209,9 @@ void Lista::modificar(string sitio){
 string Lista::encryptado(string toEncrypt,string pass) {
     string key = pass; //Any char will work
     string output = toEncrypt;
-    int mod = key.size();
-    int d;
-    for (int i = 0; i < toEncrypt.size(); i++){
-        d = mod % i;
-        output[i] = toEncrypt[i] ^ key[d];
-
-    }
-    return output;    
+    
+    for (int i = 0; i < toEncrypt.size(); i++)
+        output[i] = toEncrypt[i] ^ key[i];
+    
+    return output;
 }

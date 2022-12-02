@@ -1,7 +1,7 @@
 #include "Archivo.hpp"
 #include "lista.hpp"
 
-    Lista a;
+Lista a;
 
 void Files::escribir_en_archivo(string s, string u, string c){ ///ESCRITURA de archivos
 write.open("confidencial.txt",ios::app | ios::binary);
@@ -93,10 +93,6 @@ exit(1);
 	c.append(buffer, size_c);
 
 while(!read.eof()){	
-<<<<<<< HEAD
-=======
-
->>>>>>> e00e789bd9298c0db4383bbc6e2b836bbd18a8ab
 a.insertar(s,u,c);
 	read.read(reinterpret_cast<char *>(&size_s), sizeof(int)); ///AQUI CAPTURA EL SITIO 
 	buffer = new char[size_s];
