@@ -132,6 +132,8 @@ if(!read_sesion){
     read_sesion.close();        
     usuario = Encr_log(u, "X/8");
     contra = Encr_log(p, "X/8");
+    cout<<usuario<<" "<<contra<<endl;
+    system("pause");
     }else{
         escritura_de_user();
         return;
