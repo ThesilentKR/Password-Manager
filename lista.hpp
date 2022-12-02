@@ -25,7 +25,7 @@ class Lista{
     void insertar(string,string,string);
     void eliminar(string);
     void buscar(string,string);
-    void modificar(string);
+    void modificar(string,string);
     string encryptado(string, string);
     void imprimirTodo();
     void imprimirSitios();
@@ -162,7 +162,7 @@ void Lista::buscar(string sitio,string Encryptado){
     pre->passsword = encryptado(pre->passsword, Encryptado);   
 }
 
-void Lista::modificar(string sitio){
+void Lista::modificar(string sitio,string Encryptado){
     if(head == nullptr){
         cout<<"LA LISTA ESTA VACIA"<<endl;
         system("pause");
@@ -194,10 +194,12 @@ void Lista::modificar(string sitio){
         case 2:
             cout<<"Digita el nuevo Usuario: "; cin>>auxstring;
             pre->usuario=auxstring;
+            pre->usuario = encryptado(pre->usuario, Encryptado);
             break;
         case 3:
             cout<<"Digita el nuevo Password: "; cin>>auxstring;
             pre->passsword=auxstring;
+            pre->passsword = encryptado(pre->passsword, Encryptado);
         break;
         default:
             break;
@@ -207,11 +209,13 @@ void Lista::modificar(string sitio){
 }
 
 string Lista::encryptado(string toEncrypt,string pass) {
-    string key = pass; //Any char will work
+    string key = pass;
     string output = toEncrypt;
-    
-    for (int i = 0; i < toEncrypt.size(); i++)
-        output[i] = toEncrypt[i] ^ key[i];
-    
+    int s = pass.size();int mod = 0;
+    for (int i = 0; i < toEncrypt.size(); i++){
+     mod = i % s;
+        output[i] = toEncrypt[i] ^ key[mod];
+    }
     return output;
+
 }
